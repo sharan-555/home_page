@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./script.js">
+    <script src="https://kit.fontawesome.com/5f59ca6ad3.js" crossorigin="anonymous"></script>
+    
+
+    <style>
+      
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+      <div class="logo">
+        <h1>My Website</h1>
+      </div>
+      <ul class="menu">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Male Services</a>
+          <ul class="submenu">
+            <li><a href="#">cooking </a></li>
+            <li><a href="#">cleaning</a></li>
+            <li><a href="#">washing</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Female Services</a>
+            <ul class="submenu">
+              <li><a href="#">cooking</a></li>
+              <li><a href="#">cleaning</a></li>
+              <li><a href="#">washing</a></li>
+            </ul>
+          </li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <div class="search">
+        <input type="text" placeholder="Search..." id="searchbar" >
+        <button>Search</button>
+      </div>
+      <div class="user">
+        <button id="login">Log In</button>
+        <button id="signup">Sign Up</button>
+      </div>
+      <div class="menu-icon">
+        <i class="fa fa-bars"></i>
+      </div>
+     </nav>
+  </header>
+  <div id="suggestions"></div>
+   <!--background image container-->
+    <div class="container-card">
+      <div class="card-1">
+        <img src="./images/bg-1.jpg" alt="Image 1">
+        <h2>Female services</h2>
+        <p>working process ans flow</p>
+        <a href="#">Book Now</a>
+      </div>
+      
+      <div class="card-1">
+        <img src="./images/bg-1.jpg" alt="Image 2">
+        <h2>Male Services</h2>
+        <p>working process ans flow</p>
+        <a href="#">Book Now</a>
+      </div>
+      <div class="card-1">
+        <img src="./images/bg-1.jpg" alt="Image 1">
+        <h2>Combination</h2>
+        <p>working process ans flow</p>
+        <a href="#">Book Now</a>
+      </div>
+      <div class="card-1">
+        <img src="./images/bg-1.jpg" alt="Image 1">
+        <h2>Female services</h2>
+        <p>working process ans flow</p>
+        <a href="#">Book Now</a>
+      </div>
+      
+      <div class="card-1">
+        <img src="./images/bg-1.jpg" alt="Image 2">
+        <h2>Male Services</h2>
+        <p>working process ans flow</p>
+        <a href="#">Book Now</a>
+      </div>
+      <div class="card-1">
+        <img src="./images/bg-1.jpg" alt="Image 1">
+        <h2>Combination</h2>
+        <p>working process ans flow</p>
+        <a href="#">Book Now</a>
+      </div>
+     </div>
+     <footer class="footer">
+      <div class="container-footer">
+        <div class="row">
+          <div class="col-sm-6">
+            <h3>Follow Us</h3>
+            <ul class="social-icons">
+              <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+              <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+          <div class="col-sm-6">
+            <h3>Subscribe</h3>
+            <form class="subscribe-form">
+              <input type="email" placeholder="Enter your email address">
+              <button type="submit"><i class="fas fa-paper-plane"></i></button>
+            </form>
+          </div>
+        </div>
+        <hr>
+        <p>&copy; 2023 services. All rights reserved.</p>
+      </div>
+
+
+  <script>
+    const menuIcon = document.querySelector(".menu-icon");
+const menu = document.querySelector(".menu");
+
+menuIcon.addEventListener("click", () => {
+  menu.classList.toggle("active");
+});
+
+const loginButton = document.getElementById("login");
+const signupButton = document.getElementById("signup");
+const user = JSON.parse(localStorage.getItem("user"));
+
+if (user) {
+  loginButton.style.display = "none";
+  signupButton.textContent = "Log Out";
+  signupButton.addEventListener("click", () => {
+    localStorage.removeItem("user");
+    window.location.reload();
+  });
+} else {
+  signupButton.addEventListener("click", () => {
+    const username = prompt("Enter your username:");
+    localStorage.setItem("user", JSON.stringify({ username }));
+    window.location.reload();
+  });
+}
+
+// Array of keywords related to services
+const keywords = [
+  "cleaning",
+  "washing",
+  "laundry",
+  "maid service",
+  "janitorial",
+  "carpet cleaning",
+  "housekeeping",
+  "window cleaning",
+  "pressure washing",
+  "gutter cleaning",
+  "pool cleaning",
+];
+
+const searchbar = document.getElementById("searchbar");
+const suggestions = document.getElementById("suggestions");
+
+searchbar.addEventListener("input", function() {
+  const input = this.value.trim().toLowerCase();
+  suggestions.innerHTML = "";
+
+  if (input.length > 0) {
+    const matches = keywords.filter(keyword => keyword.includes(input));
+    matches.forEach(match => {
+      const div = document.createElement("div");
+      div.innerText = match;
+      div.addEventListener("click", function() {
+        searchbar.value = match;
+        suggestions.innerHTML = "";
+      });
+      suggestions.appendChild(div);
+    });
+  }
+});
+
+  </script>
+</body>
+</html>
+
+
+  
+
+
+
