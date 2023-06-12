@@ -1,2 +1,2 @@
-servicessd.netlify.app    the website
+servicessd.netlify.app  
 
